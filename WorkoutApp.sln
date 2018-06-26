@@ -5,11 +5,13 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkoutApp.Web", "WorkoutApp\WorkoutApp.Web.csproj", "{8EACEC30-4F6A-47C8-939B-33B43ED0CD0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkoutApp.Domain", "WorkoutApp.Domain\WorkoutApp.Domain.csproj", "{A9D81B0A-BB96-43FA-94AC-E59554E83F7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkoutApp.Domain", "WorkoutApp.Domain\WorkoutApp.Domain.csproj", "{A9D81B0A-BB96-43FA-94AC-E59554E83F7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkoutApp.Infrastructure", "WorkoutApp.Infrastructure\WorkoutApp.Infrastructure.csproj", "{D43D6E1A-540B-4E4C-928C-2FC3961F70EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkoutApp.Infrastructure", "WorkoutApp.Infrastructure\WorkoutApp.Infrastructure.csproj", "{D43D6E1A-540B-4E4C-928C-2FC3961F70EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkoutApp.Service", "WorkoutApp.Service\WorkoutApp.Service.csproj", "{E395958F-B078-41A4-9F76-7BAA88BD13F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkoutApp.Service", "WorkoutApp.Service\WorkoutApp.Service.csproj", "{E395958F-B078-41A4-9F76-7BAA88BD13F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkoutApp.Tests", "WorkoutApp.Tests\WorkoutApp.Tests.csproj", "{9B66BADB-B8BA-4C05-9527-E89A524447B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E395958F-B078-41A4-9F76-7BAA88BD13F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E395958F-B078-41A4-9F76-7BAA88BD13F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E395958F-B078-41A4-9F76-7BAA88BD13F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B66BADB-B8BA-4C05-9527-E89A524447B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B66BADB-B8BA-4C05-9527-E89A524447B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B66BADB-B8BA-4C05-9527-E89A524447B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B66BADB-B8BA-4C05-9527-E89A524447B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
