@@ -58,18 +58,7 @@ namespace WorkoutApp
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            app.UseMvc();// routes =>
-            //app.UseMvc(routes =>
-            //{
-
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller}/{action=Index}/{id?}");
-
-        //   { routes.MapRoute(
-        //        name: "weather",
-        //        template: "api/{controller}/{action=Weatherforecasts}");
-        //});
+            app.UseMvc();
 
             app.UseSpa(spa =>
             {
