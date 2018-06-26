@@ -1,0 +1,12 @@
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\bin\Debug\netcoreapp2.1\WorkoutApp.Infrastructure.deps.json
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\bin\Debug\netcoreapp2.1\WorkoutApp.Infrastructure.dll
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\obj\Debug\netcoreapp2.1\WorkoutApp.Infrastructure.csprojAssemblyReference.cache
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\obj\Debug\netcoreapp2.1\WorkoutApp.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\obj\Debug\netcoreapp2.1\WorkoutApp.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\obj\Debug\netcoreapp2.1\WorkoutApp.Infrastructure.AssemblyInfo.cs
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\bin\Debug\netcoreapp2.1\WorkoutApp.Infrastructure.pdb
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\bin\Debug\netcoreapp2.1\WorkoutApp.Domain.dll
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\bin\Debug\netcoreapp2.1\WorkoutApp.Domain.pdb
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\obj\Debug\netcoreapp2.1\WorkoutApp.Infrastructure.csproj.CopyComplete
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\obj\Debug\netcoreapp2.1\WorkoutApp.Infrastructure.dll
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\obj\Debug\netcoreapp2.1\WorkoutApp.Infrastructure.pdb

@@ -1,0 +1,8 @@
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Domain\bin\Debug\netcoreapp2.1\WorkoutApp.Domain.deps.json
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Domain\bin\Debug\netcoreapp2.1\WorkoutApp.Domain.dll
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Domain\bin\Debug\netcoreapp2.1\WorkoutApp.Domain.pdb
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Domain\obj\Debug\netcoreapp2.1\WorkoutApp.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Domain\obj\Debug\netcoreapp2.1\WorkoutApp.Domain.AssemblyInfoInputs.cache
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Domain\obj\Debug\netcoreapp2.1\WorkoutApp.Domain.AssemblyInfo.cs
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Domain\obj\Debug\netcoreapp2.1\WorkoutApp.Domain.dll
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Domain\obj\Debug\netcoreapp2.1\WorkoutApp.Domain.pdb

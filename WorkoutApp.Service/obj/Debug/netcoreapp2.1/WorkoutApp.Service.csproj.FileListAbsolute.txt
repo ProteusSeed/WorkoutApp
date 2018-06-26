@@ -1,0 +1,9 @@
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Service\bin\Debug\netcoreapp2.1\WorkoutApp.Service.deps.json
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Service\bin\Debug\netcoreapp2.1\WorkoutApp.Service.dll
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Service\bin\Debug\netcoreapp2.1\WorkoutApp.Service.pdb
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Service\obj\Debug\netcoreapp2.1\WorkoutApp.Service.csprojAssemblyReference.cache
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Service\obj\Debug\netcoreapp2.1\WorkoutApp.Service.csproj.CoreCompileInputs.cache
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Service\obj\Debug\netcoreapp2.1\WorkoutApp.Service.AssemblyInfoInputs.cache
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Service\obj\Debug\netcoreapp2.1\WorkoutApp.Service.AssemblyInfo.cs
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Service\obj\Debug\netcoreapp2.1\WorkoutApp.Service.dll
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Service\obj\Debug\netcoreapp2.1\WorkoutApp.Service.pdb
