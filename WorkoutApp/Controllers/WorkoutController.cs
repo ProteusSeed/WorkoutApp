@@ -18,7 +18,7 @@ namespace WorkoutApp.Web.Controllers
         }
 
         [HttpPost("CreateWorkoutExcercise")]
-        public Workout_Excercise CreateWorkoutExcercise([FromBody]Workout_Excercise Data) 
+        public ActionResult<Workout_Excercise> CreateWorkoutExcercise([FromBody]Workout_Excercise Data) 
         {
 
             WorkoutExcerciseRepo.CreateWorkout(Data);
