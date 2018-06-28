@@ -37,6 +37,7 @@ namespace WorkoutApp
 
             string dbConnectionString = Configuration.GetConnectionString("WorkoutAppDB_ConnectionString");
 
+            //Should these be scoped dependences instead?
             services.AddTransient<IDbConnection>((IServiceProvider sc) => new SqlConnection(dbConnectionString));
             services.AddTransient<IWorkoutExcerciseRepo, WorkoutExcerciseRepo>();
         }

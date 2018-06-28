@@ -6,3 +6,4 @@ C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Domain\obj\Debug\netcoreap
 C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Domain\obj\Debug\netcoreapp2.1\WorkoutApp.Domain.AssemblyInfo.cs
 C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Domain\obj\Debug\netcoreapp2.1\WorkoutApp.Domain.dll
 C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Domain\obj\Debug\netcoreapp2.1\WorkoutApp.Domain.pdb
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Domain\obj\Debug\netcoreapp2.1\WorkoutApp.Domain.csprojAssemblyReference.cache
