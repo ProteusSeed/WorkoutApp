@@ -18,10 +18,14 @@ namespace WorkoutApp.Infrastructure
 
         public void CreateWorkout(Workout_Excercise WorkoutExcercise)
         {
-
-           DbConnection.Execute(@"INSERT Workout_Excercise VALUES(@Workout_DateTime, @Program_Version_Id, @Excercise_Id, @Weight, @Set_Number, @Rep_Number, @Workout_Excercise_Note )",
-                            WorkoutExcercise
-                            );
+            string sql = @"INSERT Workout_Excercise 
+                           VALUES(@Workout_DateTime, @Program_Version_Id, 
+                                @Excercise_Id, @Weight, 
+                                @Set_Number, @Rep_Number, 
+                                @Workout_Excercise_Note,
+                                @Workout_Excercise_DateTime
+                                )";
+            DbConnection.Execute( sql, WorkoutExcercise );
 
             //throw new NotImplementedException();
         }

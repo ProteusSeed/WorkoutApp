@@ -10,3 +10,7 @@ C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\bin\Debug\n
 C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\obj\Debug\netcoreapp2.1\WorkoutApp.Infrastructure.csproj.CopyComplete
 C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\obj\Debug\netcoreapp2.1\WorkoutApp.Infrastructure.dll
 C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\obj\Debug\netcoreapp2.1\WorkoutApp.Infrastructure.pdb
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Mvc.Core.dll
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Mvc.Core.xml
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\bin\Debug\netcoreapp2.1\Newtonsoft.Json.dll
+C:\Users\Malfeitor\source\repos\WorkoutApp\WorkoutApp.Infrastructure\bin\Debug\netcoreapp2.1\Newtonsoft.Json.xml

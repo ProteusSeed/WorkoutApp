@@ -7,6 +7,7 @@ using WorkoutApp.Web.Controllers;
 using WorkoutApp.Domain;
 using System.Collections.Generic;
 using FluentAssertions;
+using Microsoft.AspNetCore.Mvc.ModelBinding; //to access model state
 
 namespace WorkoutApp.Tests
 {
@@ -26,18 +27,21 @@ namespace WorkoutApp.Tests
         {
             //Arrange
             Workout_Excercise WorkoutExcerciseDataMock = new Workout_Excercise
-                { Workout_DateTime = DateTime.Now,
-                    Program_Version_Id = 1,
-                    Excercise_Id = 1,
-                    Weight = 100,
-                    Set_Number = 10000,
-                    Rep_Number = 5,
-                    Workout_Excercise_Note = "Controller Unit Test"
+                {
+                Workout_DateTime = DateTime.Now,
+                Program_Version_Id = 1,
+                Excercise_Id = 1,
+                Weight = 100,
+                Set_Number = 10000,
+                Rep_Number = 5,
+                Workout_Excercise_Note = "Controller Unit Test",
+                Workout_Excercise_DateTime = DateTime.Now
                 };
 
             //WorkoutExcerciseRepoMock.Setup(repo => repo.CreateWorkout()).Returns(Task.Void);
 
             //act
+
             var result = WorkoutController.CreateWorkoutExcercise(WorkoutExcerciseDataMock);
 
             //asert
