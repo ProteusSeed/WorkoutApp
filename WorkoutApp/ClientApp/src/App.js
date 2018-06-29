@@ -11,8 +11,19 @@ export default class App extends Component {
 
   render() {
               return (
-                        <div >                       
-                          <form className="formInput">                         
+                  <div >  
+                      WORKOUT
+                          <form className="formInput"> 
+                              <label>Excercise</label>
+                              <input list="Excercises" name="ExcerciseId" id="txtExcerciseId"/>
+                          <datalist id="Excercises">
+                                      <option value="Internet Explorer"/>
+                                          <option value="Firefox"/>
+                                              <option value="Chrome"/>
+                                                  <option value="Opera"/>
+                                                      <option value="Safari"/>
+                                    </datalist> 
+
                               <label>Set Number</label>
                               <input type="number" name="txtSetNumber" />
                          
