@@ -8,6 +8,7 @@ using WorkoutApp.Domain;
 using System.Collections.Generic;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.ModelBinding; //to access model state
+using System.ComponentModel.DataAnnotations;
 
 namespace WorkoutApp.Tests
 {
@@ -51,6 +52,7 @@ namespace WorkoutApp.Tests
             var WorkoutExcercise = okResult.Value.Should().BeAssignableTo<Workout_Excercise>().Subject;         
 
             WorkoutExcercise.Program_Version_Id.Should().Be(1);
+
         }
     }
 }
