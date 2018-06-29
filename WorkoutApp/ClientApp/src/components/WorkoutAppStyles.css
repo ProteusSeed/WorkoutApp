@@ -18,10 +18,10 @@
     content: ":";
 }
 
-.formInput input{
+.formInput input, select{
     grid-column: 2 / 3;
 }
 
-.formInput button {
+.formInput button, select {
     grid-column: 1 / 3;
 }
