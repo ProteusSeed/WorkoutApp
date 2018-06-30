@@ -15,26 +15,22 @@ class WorkoutExcerciseForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        //const data = new FormData(event.target);
-        var data = {
-            Workout_DateTime: "03/24/1975",
-            Program_Version_Id: 1,
-            Excercise_Id: 1,
-            Weight: 25,
-            Set_Number: 4,
-            Rep_Number: 5,
-            Workout_Excercise_Note: null,
-            Workout_Excercise_DateTime: "06/28/2018 1:17PM"
-        };
+        const data = new FormData(event.target);
+        //const data = {
+        //    Workout_DateTime: "03/24/1975",
+        //    Program_Version_Id: 1,
+        //    Excercise_Id: 1,
+        //    Weight: 25,
+        //    Set_Number: 4,
+        //    Rep_Number: 5,
+        //    Workout_Excercise_Note: null,
+        //    Workout_Excercise_DateTime: "06/28/2018 1:17PM"
+        //};
 
-        axios.post(
-            {
-                method: 'post',
-                url: '/api/Workout/CreateWorkoutExcercise',
-                data: data,
-                config: { headers: { 'Content-Type': 'multipart/form-data' } }
-            }
-        ).then(function (response) {
+        //TRY THIS! https://stackoverflow.com/questions/43251394/react-form-using-axios-post
+
+        axios.post('/api/Workout/CreateWorkoutExcercise', data)
+        .then(function (response) {
             //handle success
             console.log(response);
             console.log(response.data);
@@ -42,9 +38,9 @@ class WorkoutExcerciseForm extends React.Component {
         })
             .catch(function (response) {
                 //handle error
-                console.log(response);
-                console.log(response.data);
-                console.log(data);
+                console.log("response",response);
+                console.log("Response data",response.data);
+                console.log("data",data);
             });
               
     }

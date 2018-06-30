@@ -20,7 +20,7 @@ namespace WorkoutApp.Web.Controllers
         }
 
         [HttpPost("CreateWorkoutExcercise")]
-        public ActionResult<Workout_Excercise> CreateWorkoutExcercise([FromForm][BindRequired]Workout_Excercise WorkoutExcerciseData) 
+        public ActionResult<Workout_Excercise> CreateWorkoutExcercise([FromBody][BindRequired]Workout_Excercise WorkoutExcerciseData) 
         {
             if (ModelState.IsValid)
             {
