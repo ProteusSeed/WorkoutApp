@@ -11,11 +11,38 @@ import axios from 'axios';
 class WorkoutExcerciseForm extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            Workout_DateTime: "03/24/1975",
+            Program_Version_Id: 1,
+            Excercise_Id: 1,
+            Weight: 0,
+            Set_Number: 0,
+            Rep_Number: 5,
+            Workout_Excercise_Note: null,
+            Workout_Excercise_DateTime: "06/28/2018 1:17PM"
+        };
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value,
+        });
+
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        const data = new FormData(event.target);
+
+        const { Workout_DateTime, Program_Version_Id, Excercise_Id, Weight, Set_Number,
+            Rep_Number, Workout_Excercise_Note, Workout_Excercise_DateTime } = this.state;//This is called Destructuring Assignment
+        const data = this.state;
+        //const data = new FormData(event.target());
         //const data = {
         //    Workout_DateTime: "03/24/1975",
         //    Program_Version_Id: 1,
@@ -29,18 +56,18 @@ class WorkoutExcerciseForm extends React.Component {
 
         //TRY THIS! https://stackoverflow.com/questions/43251394/react-form-using-axios-post
 
-        axios.post('/api/Workout/CreateWorkoutExcercise', data)
+        axios.post('/api/Workout/CreateWorkoutExcercise', data )//{ Workout_DateTime, Program_Version_Id, Excercise_Id, Weight, Set_Number, Rep_Number, Workout_Excercise_Note, Workout_Excercise_DateTime } )
         .then(function (response) {
             //handle success
             console.log(response);
             console.log(response.data);
-            console.log(data);
+            //console.log("data",data);
         })
             .catch(function (response) {
                 //handle error
                 console.log("response",response);
                 console.log("Response data",response.data);
-                console.log("data",data);
+                console.log("data", data);
             });
               
     }
@@ -68,7 +95,7 @@ class WorkoutExcerciseForm extends React.Component {
                 WORKOUT
                     <form id="frmWorkoutExcercises" className="formInput" onSubmit={this.handleSubmit}>
 
-                    <select id="Excercises" form="frmWorkoutExcercises">
+                    <select id="Excercises" form="frmWorkoutExcercises" name="Excercise_Id">
                         <option value="1">Squat</option>
                         <option value="2">Bench Press</option>
                         <option value="3">Dead Lift</option>
@@ -76,13 +103,13 @@ class WorkoutExcerciseForm extends React.Component {
                     </select>
 
                     <label>Set Number</label>
-                    <input type="number" name="txtSetNumber" />
+                    <input type="number" name="Set_Number" onChange={this.handleInputChange}/>
 
                     <label>Weight</label>
-                    <input type="number" name="txtWeight" />
+                    <input type="number" name="Weight" onChange={this.handleInputChange}/>
 
                     <label>Reps</label>
-                    <input type="number" name="txtNumberOfReps" />
+                    <input type="number" name="Rep_Number" onChange={this.handleInputChange}/>
 
                     <button>Send data!</button>
                 </form>
