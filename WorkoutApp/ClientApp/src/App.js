@@ -14,10 +14,10 @@ class WorkoutExcerciseForm extends React.Component {
         this.state = {
             Workout_DateTime: "03/24/1975",
             Program_Version_Id: 1,
-            Excercise_Id: 1,
+            Excercise_Id: 0,
             Weight: 0,
             Set_Number: 0,
-            Rep_Number: 5,
+            Rep_Number: 0,
             Workout_Excercise_Note: null,
             Workout_Excercise_DateTime: "06/28/2018 1:17PM"
         };
