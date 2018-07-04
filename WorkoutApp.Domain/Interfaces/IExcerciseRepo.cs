@@ -6,6 +6,6 @@ namespace WorkoutApp.Domain.Interfaces
 {
     public interface IExcerciseRepo
     {
-        void GetExcercise();
+        IList GetExcercise();
     }
 }
