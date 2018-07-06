@@ -40,6 +40,7 @@ namespace WorkoutApp
             //Should these be scoped dependences instead?
             services.AddTransient<IDbConnection>((IServiceProvider sc) => new SqlConnection(dbConnectionString));
             services.AddTransient<IWorkoutExcerciseRepo, WorkoutExcerciseRepo>();
+            services.AddTransient<IProgramVersionRepo, ProgramVerisonRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

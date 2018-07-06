@@ -17,10 +17,9 @@ namespace WorkoutApp.Infrastructure
             this.DbConnection = DbConnection;
         }
 
-        public IList<Excercise> GetExcercise()
+        public IEnumerable<Excercise> GetExcercise()
         {
-            IList<Excercise> Excercises;
-            Excercises = DbConnection.Query<Excercise>("SELECT * FROM dbo.Excercise;").AsList<Excercise>();
+            var Excercises = DbConnection.Query<Excercise>("SELECT * FROM dbo.Excercise;");
 
             return Excercises;
         }
