@@ -5,8 +5,6 @@ import { Home } from './components/Home';
 import './components/WorkoutAppStyles.css';
 import axios from 'axios';
 
-//import { FetchData } from './components/FetchData';
-//import { Counter } from './components/Counter';
 class ExcerciseDropdown extends React.Component {
     state = {
         excercises: []
