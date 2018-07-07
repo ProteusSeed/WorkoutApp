@@ -7,6 +7,28 @@ import axios from 'axios';
 
 //import { FetchData } from './components/FetchData';
 //import { Counter } from './components/Counter';
+class ExcerciseDropdown extends React.Component {
+    state = {
+        excercises: []
+    }
+
+    componentDidMount(){
+        axios.get("api/ProgramVersion/GetProgramVersionExcercises/1")
+            .then(res => {
+                const excercises = res.data;
+                this.setState({ excercises });
+                console.log(excercises);
+            });
+    }
+
+    render() {
+        return (
+            <select id="Excercises" form="frmWorkoutExcercises" name="Excercise_Id" >
+                {this.state.excercises.map(excercise => <option key={excercise.excercise_Id} value={excercise.excercise_Id}> {excercise.excercise_Name} </option> ) }
+            </select>
+        )
+    }
+}
 
 class WorkoutExcerciseForm extends React.Component {
     constructor(props) {
@@ -42,17 +64,6 @@ class WorkoutExcerciseForm extends React.Component {
         const { Workout_DateTime, Program_Version_Id, Excercise_Id, Weight, Set_Number,
             Rep_Number, Workout_Excercise_Note, Workout_Excercise_DateTime } = this.state;//This is called Destructuring Assignment
         const data = this.state;
-        //const data = new FormData(event.target());
-        //const data = {
-        //    Workout_DateTime: "03/24/1975",
-        //    Program_Version_Id: 1,
-        //    Excercise_Id: 1,
-        //    Weight: 25,
-        //    Set_Number: 4,
-        //    Rep_Number: 5,
-        //    Workout_Excercise_Note: null,
-        //    Workout_Excercise_DateTime: "06/28/2018 1:17PM"
-        //};
 
         //TRY THIS! https://stackoverflow.com/questions/43251394/react-form-using-axios-post
 
@@ -71,22 +82,6 @@ class WorkoutExcerciseForm extends React.Component {
             });
               
     }
-            /*{
-            Workout_DateTime: "03/24/1975",
-            Program_Version_Id: 1,
-            Excercise_Id: 1,
-            Weight: 25,
-            Set_Number: 4,
-            Rep_Number: 5,
-            Workout_Excercise_Note: null,
-            Workout_Excercise_DateTime: "06/28/2018 1:17PM"
-        })
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-                console.log(data);
-            });
-        */
 
     render() {
 
@@ -95,12 +90,7 @@ class WorkoutExcerciseForm extends React.Component {
                 WORKOUT
                     <form id="frmWorkoutExcercises" className="formInput" onSubmit={this.handleSubmit}>
 
-                    <select id="Excercises" form="frmWorkoutExcercises" name="Excercise_Id">
-                        <option value="1">Squat</option>
-                        <option value="2">Bench Press</option>
-                        <option value="3">Dead Lift</option>
-                        <option value="4">Military Press</option >
-                    </select>
+                    <ExcerciseDropdown/>
 
                     <label>Set Number</label>
                     <input type="number" name="Set_Number" onChange={this.handleInputChange}/>
