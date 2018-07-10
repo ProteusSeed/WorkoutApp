@@ -4,10 +4,22 @@ import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import './components/WorkoutAppStyles.css';
 import axios from 'axios';
+import { propTypes } from 'react';
 
 class ExcerciseDropdown extends React.Component {
-    state = {
-        excercises: []
+    constructor() {
+        super();
+        this.state = {
+            excercises: []
+        }
+        this.ExcerciseDropdownOnChange = this.ExcerciseDropdownOnChange.bind(this);
+    }
+
+    ExcerciseDropdownOnChange = (event) => {
+        const excerciseId = event.target.value;
+
+        this.props.onChangeCallback(excerciseId);
+
     }
 
     componentDidMount(){
@@ -15,13 +27,12 @@ class ExcerciseDropdown extends React.Component {
             .then(res => {
                 const excercises = res.data;
                 this.setState({ excercises });
-                console.log(excercises);
             });
     }
 
     render() {
         return (
-            <select id="Excercises" form="frmWorkoutExcercises" name="Excercise_Id" >
+            <select id="Excercises" form="frmWorkoutExcercises" name="Excercise_Id" onChange={this.ExcerciseDropdownOnChange}>
                 {this.state.excercises.map(excercise => <option key={excercise.excercise_Id} value={excercise.excercise_Id}> {excercise.excercise_Name} </option> ) }
             </select>
         )
@@ -29,8 +40,8 @@ class ExcerciseDropdown extends React.Component {
 }
 
 class WorkoutExcerciseForm extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             Workout_DateTime: "03/24/1975",
             Program_Version_Id: 1,
@@ -43,6 +54,11 @@ class WorkoutExcerciseForm extends React.Component {
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    ExcerciseDropdownChange = (ExcerciseId) => {
+        this.setState({Excercise_Id: ExcerciseId});
+        console.log(this.state.Excercise_Id);
     }
 
     handleInputChange(event) {
@@ -65,18 +81,18 @@ class WorkoutExcerciseForm extends React.Component {
 
         //TRY THIS! https://stackoverflow.com/questions/43251394/react-form-using-axios-post
 
-        axios.post('/api/Workout/CreateWorkoutExcercise', data )//{ Workout_DateTime, Program_Version_Id, Excercise_Id, Weight, Set_Number, Rep_Number, Workout_Excercise_Note, Workout_Excercise_DateTime } )
+        axios.post('/api/Workout/CreateWorkoutExcercise', data )
         .then(function (response) {
             //handle success
-            console.log(response);
-            console.log(response.data);
+           //console.log(response);
+            //console.log(response.data);
             //console.log("data",data);
         })
             .catch(function (response) {
                 //handle error
                 console.log("response",response);
-                console.log("Response data",response.data);
-                console.log("data", data);
+                //console.log("Response data",response.data);
+                //console.log("data", data);
             });
               
     }
@@ -88,7 +104,7 @@ class WorkoutExcerciseForm extends React.Component {
                 WORKOUT
                     <form id="frmWorkoutExcercises" className="formInput" onSubmit={this.handleSubmit}>
 
-                    <ExcerciseDropdown/>
+                    <ExcerciseDropdown onChangeCallback={this.ExcerciseDropdownChange}/>
 
                     <label>Set Number</label>
                     <input type="number" name="Set_Number" onChange={this.handleInputChange}/>
