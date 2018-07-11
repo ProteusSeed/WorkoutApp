@@ -10,29 +10,31 @@ class ExcerciseDropdown extends React.Component {
     constructor() {
         super();
         this.state = {
-            excercises: []
+            excercises: [],
+            defaultExcerciseId: 0
         }
         this.ExcerciseDropdownOnChange = this.ExcerciseDropdownOnChange.bind(this);
     }
 
     ExcerciseDropdownOnChange = (event) => {
-        const excerciseId = event.target.value;
-
-        this.props.onChangeCallback(excerciseId);
-
+            this.props.setExcerciseIdCallback(event.target.value);
     }
 
     componentDidMount(){
         axios.get("api/ProgramVersion/GetProgramVersionExcercises/1")
             .then(res => {
                 const excercises = res.data;
-                this.setState({ excercises });
+                this.setState({ excercises: excercises  });
+                this.setState({//use the 1st excercise's id as default
+                    defaultExcerciseId: this.state.excercises[0].excercise_Id
+                }); 
+                this.props.setExcerciseIdCallback(this.state.defaultExcerciseId);
             });
     }
 
     render() {
         return (
-            <select id="Excercises" form="frmWorkoutExcercises" name="Excercise_Id" onChange={this.ExcerciseDropdownOnChange}>
+            <select id="Excercises" form="frmWorkoutExcercises" name="Excercise_Id" onChange={this.ExcerciseDropdownOnChange} value={this.state.defaultExcerciseId} defaultValue={this.state.defaultExcerciseId}>
                 {this.state.excercises.map(excercise => <option key={excercise.excercise_Id} value={excercise.excercise_Id}> {excercise.excercise_Name} </option> ) }
             </select>
         )
@@ -104,7 +106,7 @@ class WorkoutExcerciseForm extends React.Component {
                 WORKOUT
                     <form id="frmWorkoutExcercises" className="formInput" onSubmit={this.handleSubmit}>
 
-                    <ExcerciseDropdown onChangeCallback={this.ExcerciseDropdownChange}/>
+                    <ExcerciseDropdown setExcerciseIdCallback={this.ExcerciseDropdownChange}/>
 
                     <label>Set Number</label>
                     <input type="number" name="Set_Number" onChange={this.handleInputChange}/>
