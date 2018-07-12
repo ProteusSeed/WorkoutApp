@@ -81,8 +81,6 @@ class WorkoutExcerciseForm extends React.Component {
             Rep_Number, Workout_Excercise_Note, Workout_Excercise_DateTime } = this.state;//This is called Destructuring Assignment
         const data = this.state;
 
-        //TRY THIS! https://stackoverflow.com/questions/43251394/react-form-using-axios-post
-
         axios.post('/api/Workout/CreateWorkoutExcercise', data )
         .then(function (response) {
             //handle success
@@ -116,6 +114,9 @@ class WorkoutExcerciseForm extends React.Component {
 
                     <label>Reps</label>
                     <input type="number" name="Rep_Number" onChange={this.handleInputChange}/>
+
+                    <label>Reps</label>
+                    <input type="text" name="Workout_Excercise_Note" onChange={this.handleInputChange} />
 
                     <button>Send data!</button>
                 </form>
