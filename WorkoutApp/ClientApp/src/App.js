@@ -17,7 +17,7 @@ class ExcerciseDropdown extends React.Component {
     }
 
     ExcerciseDropdownOnChange = (event) => {
-            this.props.setExcerciseIdCallback(event.target.value);
+            this.props.setExcerciseIdCallback(event.target.name, event.target.value);
     }
 
     componentDidMount(){
@@ -28,15 +28,18 @@ class ExcerciseDropdown extends React.Component {
                 this.setState({//use the 1st excercise's id as default
                     defaultExcerciseId: this.state.excercises[0].excercise_Id
                 }); 
-                this.props.setExcerciseIdCallback(this.state.defaultExcerciseId);
+                this.props.setExcerciseIdCallback("ExcerciseDropwdown",this.state.defaultExcerciseId);
             });
     }
 
     render() {
-        return (
-            <select id="Excercises" form="frmWorkoutExcercises" name="Excercise_Id" onChange={this.ExcerciseDropdownOnChange} value={this.state.defaultExcerciseId} defaultValue={this.state.defaultExcerciseId}>
-                {this.state.excercises.map(excercise => <option key={excercise.excercise_Id} value={excercise.excercise_Id}> {excercise.excercise_Name} </option> ) }
-            </select>
+        return (        
+            <div className="formSelect">
+                <label>Excercise</label>
+                <select id="Excercises" form="frmWorkoutExcercises" name="Excercise_Id" onChange={this.ExcerciseDropdownOnChange} value={this.state.defaultExcerciseId} defaultValue={this.state.defaultExcerciseId}>                
+                {this.state.excercises.map(excercise => <option key={excercise.excercise_Id} value={excercise.excercise_Id}> {excercise.excercise_Name} </option>)}
+                </select>  
+             </div>
         )
     }
 }
@@ -58,9 +61,9 @@ class WorkoutExcerciseForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    ExcerciseDropdownChange = (ExcerciseId) => {
+    ExcerciseDropdownChange = (ElementName, ExcerciseId) => {
         this.setState({Excercise_Id: ExcerciseId});
-        console.log(this.state.Excercise_Id);
+        console.log(ElementName, ExcerciseId);
     }
 
     handleInputChange(event) {
@@ -98,28 +101,29 @@ class WorkoutExcerciseForm extends React.Component {
     }
 
     render() {
-
         return (
             <div >
                 WORKOUT
+                     <ExcerciseDropdown setExcerciseIdCallback={this.ExcerciseDropdownChange} />
                     <form id="frmWorkoutExcercises" className="formInput" onSubmit={this.handleSubmit}>
 
-                    <ExcerciseDropdown setExcerciseIdCallback={this.ExcerciseDropdownChange}/>
+                        <label>Workout Date</label>
+                        <input type="datetime-local" name="Workout_DateTime" onChange={this.handleInputChange}/>
 
-                    <label>Set Number</label>
-                    <input type="number" name="Set_Number" onChange={this.handleInputChange}/>
+                        <label>Set Number</label>
+                        <input type="number" name="Set_Number" onChange={this.handleInputChange}/>
 
-                    <label>Weight</label>
-                    <input type="number" name="Weight" onChange={this.handleInputChange}/>
+                        <label>Weight</label>
+                        <input type="number" name="Weight" onChange={this.handleInputChange}/>
 
-                    <label>Reps</label>
-                    <input type="number" name="Rep_Number" onChange={this.handleInputChange}/>
+                        <label>Reps</label>
+                        <input type="number" name="Rep_Number" onChange={this.handleInputChange}/>
 
-                    <label>Reps</label>
-                    <input type="text" name="Workout_Excercise_Note" onChange={this.handleInputChange} />
+                        <label>Reps</label>
+                        <input type="text" name="Workout_Excercise_Note" onChange={this.handleInputChange} />
 
-                    <button>Send data!</button>
-                </form>
+                        <button>Send data!</button>
+                    </form>
 
             </div>         
         );
