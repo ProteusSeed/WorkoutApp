@@ -108,7 +108,7 @@ class WorkoutExcerciseForm extends React.Component {
                     <form id="frmWorkoutExcercises" className="formInput" onSubmit={this.handleSubmit}>
 
                         <label>Workout Date</label>
-                        <input type="datetime-local" name="Workout_DateTime" onChange={this.handleInputChange}/>
+                    <input type="datetime-local" id="Workout_DateTime" name="Workout_DateTime" onChange={this.handleInputChange}/>
 
                         <label>Set Number</label>
                         <input type="number" name="Set_Number" onChange={this.handleInputChange}/>

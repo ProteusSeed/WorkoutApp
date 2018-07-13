@@ -1,7 +1,7 @@
 ﻿
 .formInput{
     display: grid;
-    grid-template-columns: 100px 100px 150px;
+    grid-template-columns: 100px 50px 100px;
     grid-template-rows: auto;
     grid-row-gap: 200px;
     grid-gap: 10px;
@@ -12,30 +12,31 @@
         grid-column: 1;
     }
 
-.formInput label:after {
-    content: ":";
-}
+        .formInput label:after {
+            content: ":";
+            grid-column: 1;
+        }
 
-.formInput input[name^='Workout_DateTime'] {
-    grid-column-start: 2;
-    grid-column-end: 4;
+    .formInput input[name="Workout_DateTime"] {
+        grid-column: 2 / 4;
     }
 
 .formInput input{
     grid-column: 2;
 }
 
-.formInput button {
-    grid-column: 1/3;
-}
+    .formInput button {
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
 
 .formSelect {
     display: grid;
-    grid-template-columns: 100px 300px;
+    grid-template-columns: 100px 50px 100px;
     grid-template-rows: auto;
     grid-row-gap: 200px;
     grid-gap: 10px;
-
+    padding-bottom: 10px;
 }
 .formSelect label:after {
     content: ":";
@@ -45,5 +46,5 @@
     grid-column: 1;
 }
 .formSelect select{
-    grid-column: 2;
+    grid-column: 2/4;
 }
