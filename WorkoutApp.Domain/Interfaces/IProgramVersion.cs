@@ -7,6 +7,7 @@ namespace WorkoutApp.Infrastructure
 {
     public interface IProgramVersionRepo
     {
-        IEnumerable<Excercise> GetProgramVersionExcercises( int Program_Version_Id);    
+        IEnumerable<Program_Version> GetProgramVersion( int Program_id);
+        IEnumerable<Excercise> GetProgramVersionExcercises( int Program_Version_Id);       
     }
 }
