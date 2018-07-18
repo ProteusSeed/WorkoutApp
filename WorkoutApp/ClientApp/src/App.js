@@ -28,7 +28,7 @@ class ExcerciseDropdown extends React.Component {
                 this.setState({//use the 1st excercise's id as default
                     defaultExcerciseId: this.state.excercises[0].excercise_Id
                 }); 
-                this.props.setExcerciseIdCallback("ExcerciseDropwdown",this.state.defaultExcerciseId);
+                this.props.setExcerciseIdCallback(this.name,this.state.defaultExcerciseId);
             });
     }
 

@@ -30,5 +30,16 @@ namespace WorkoutApp.Web.Controllers
 
             return excercises;
         }
+
+        [HttpGet("GetProgramVersions/{Program_Id}")]
+        public ActionResult<IEnumerable<Program_Version>> GetProgramVersions([FromRoute] int Program_Id)
+        {
+            var ProgramVersions = ProgramVersionRepo.GetProgramVersion(Program_Id);
+
+            ActionResult<IEnumerable<Program_Version>> ProgramVersionsResult = new ActionResult<IEnumerable<Program_Version>>(ProgramVersions);
+
+            return ProgramVersionsResult;
+        }
+
     }
 }

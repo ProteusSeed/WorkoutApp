@@ -19,14 +19,16 @@ namespace WorkoutApp.Infrastructure
 
         public IEnumerable<Program_Version> GetProgramVersion(int Program_Id)
         {
-            string sql = @"SELECT PV.*
-                                ,PV.Program_Version_Id
+            string sql = @"SELECT PV.Program_Version_ID
                                 ,PV.Program_Version_Desc
                                 ,PV.Program_Version_Date_Active
+                                ,P.Program_Id
+                                ,P.Program_Name
+                                ,P.Program_Desc
                             FROM dbo.Program_Version PV
                             JOIN dbo.Program P
                                 ON PV.Program_Id = P.Program_Id
-                            WHERE Program_Id = @Program_Id;";
+                            WHERE P.Program_Id = @Program_Id;";
             var programVersions = DbConnection.Query<Program_Version>(sql, new { Program_Id });
 
             return programVersions;
@@ -39,7 +41,7 @@ namespace WorkoutApp.Infrastructure
                             FROM dbo.Program_Version_Excercise PE
                             JOIN dbo.Excercise E
                                 ON PE.Excercise_Id = E.Excercise_Id
-                            WHERE Program_Version_Id = @Program_Version_Id;";
+                            WHERE PE.Program_Version_Id = @Program_Version_Id;";
             var excercises = DbConnection.Query<Excercise>(sql, new { Program_Version_Id });
 
             return excercises;
