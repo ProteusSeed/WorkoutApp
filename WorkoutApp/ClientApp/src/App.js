@@ -119,7 +119,7 @@ class WorkoutExcerciseForm extends React.Component {
                         <label>Reps</label>
                         <input type="number" name="Rep_Number" onChange={this.handleInputChange}/>
 
-                        <label>Reps</label>
+                        <label>Note</label>
                         <input type="text" name="Workout_Excercise_Note" onChange={this.handleInputChange} />
 
                         <button>Send data!</button>
