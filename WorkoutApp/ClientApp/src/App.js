@@ -63,11 +63,6 @@ class WorkoutExcerciseForm extends React.Component {
             });
     }
 
-    ExcerciseDropdownChange = (event) => {
-        this.setState({ Excercise_Id: event.target.value});
-        //console.log(event.target.value);
-    }
-
     handleInputChange(event) {
         const target = event.target;
         const value = target.value;
@@ -111,8 +106,8 @@ class WorkoutExcerciseForm extends React.Component {
         return (
             <div >
                 <label>WORKOUT</label><br/>
-                     <SelectDropdown selectableData={this.state.excercises} SelectDropdownOnChange={this.ExcerciseDropdownChange}
-                    Value="0" defaultValue={this.state.defaultExcerciseId} form="frmWorkoutExcercises" name="ExcerciseSelectDropdown" />
+                <SelectDropdown selectableData={this.state.excercises} SelectDropdownOnChange={this.handleInputChange}
+                    Value="0" defaultValue={this.state.defaultExcerciseId} form="frmWorkoutExcercises" name="Excercise_Id" />
                     <form id="frmWorkoutExcercises" className="formInput" onSubmit={this.handleSubmit}>
 
                         <label>Workout Date</label>
