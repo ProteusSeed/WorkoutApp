@@ -6,41 +6,28 @@ import './components/WorkoutAppStyles.css';
 import axios from 'axios';
 import { propTypes } from 'react';
 
-class ExcerciseDropdown extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            excercises: [],
-            defaultExcerciseId: 0
-        }
-        this.ExcerciseDropdownOnChange = this.ExcerciseDropdownOnChange.bind(this);
-    }
-
-    ExcerciseDropdownOnChange = (event) => {
-            this.props.setExcerciseIdCallback(event.target.name, event.target.value);
-    }
-
-    componentDidMount(){
-        axios.get("api/ProgramVersion/GetProgramVersionExcercises/1")
-            .then(res => {
-                const excercises = res.data;
-                this.setState({ excercises: excercises  });
-                this.setState({//use the 1st excercise's id as default
-                    defaultExcerciseId: this.state.excercises[0].excercise_Id
-                }); 
-                this.props.setExcerciseIdCallback(this.name,this.state.defaultExcerciseId);
-            });
-    }
-
+class SelectOption extends React.Component {
     render() {
-        return (        
+                return(
+                    <option key={this.props.excercise_Id} value={this.props.excercise_Id} > {this.props.excercise_Name} </option>
+                    )
+            }
+}
+
+class SelectDropdown extends React.Component {
+    render() {
+        const selectableData = this.props.selectableData;
+        const Options = selectableData.map((excercise) => <option key={excercise.excercise_Id} value={excercise.excercise_Id}> {excercise.excercise_Name} </option>);
+
+        return (
             <div className="formSelect">
                 <label>Excercise</label>
-                <select id="Excercises" form="frmWorkoutExcercises" name="Excercise_Id" onChange={this.ExcerciseDropdownOnChange} value={this.state.defaultExcerciseId} defaultValue={this.state.defaultExcerciseId}>                
-                {this.state.excercises.map(excercise => <option key={excercise.excercise_Id} value={excercise.excercise_Id}> {excercise.excercise_Name} </option>)}
-                </select>  
-             </div>
-        )
+                    <select id="Excercises" form={this.props.form} name={this.props.name} onChange={this.props.SelectDropdownOnChange}
+                            value={this.props.value} defaultValue={this.props.defaultValue}>
+                            {Options}
+                </select>
+                </div>
+                        )
     }
 }
 
@@ -55,15 +42,30 @@ class WorkoutExcerciseForm extends React.Component {
             Set_Number: 0,
             Rep_Number: 0,
             Workout_Excercise_Note: null,
-            Workout_Excercise_DateTime: "06/28/2018 1:17PM"
+            Workout_Excercise_DateTime: "06/28/2018 1:17PM",
+            excercises: [],
+            defaultExcerciseId: 0
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    ExcerciseDropdownChange = (ElementName, ExcerciseId) => {
-        this.setState({Excercise_Id: ExcerciseId});
-        console.log(ElementName, ExcerciseId);
+    componentDidMount() {
+        axios.get("api/ProgramVersion/GetProgramVersionExcercises/1")
+            .then(res => {
+                const excercises = res.data;
+                this.setState({ excercises: excercises });
+                this.setState({//use the 1st excercise's id as default
+                    defaultExcerciseId: this.state.excercises[0].excercise_Id
+                });
+                //this.props.setExcerciseIdCallback(this.name, this.state.defaultExcerciseId);
+                console.log(this.state.excercises);
+            });
+    }
+
+    ExcerciseDropdownChange = (event) => {
+        this.setState({ Excercise_Id: event.target.value});
+        //console.log(event.target.value);
     }
 
     handleInputChange(event) {
@@ -101,10 +103,16 @@ class WorkoutExcerciseForm extends React.Component {
     }
 
     render() {
+        const noteStyle = {
+            gridColumnStart: 2,
+            gridColumnEnd: 4
+        };
+
         return (
             <div >
-                WORKOUT
-                     <ExcerciseDropdown setExcerciseIdCallback={this.ExcerciseDropdownChange} />
+                <label>WORKOUT</label><br/>
+                     <SelectDropdown selectableData={this.state.excercises} SelectDropdownOnChange={this.ExcerciseDropdownChange}
+                    Value="0" defaultValue={this.state.defaultExcerciseId} form="frmWorkoutExcercises" name="ExcerciseSelectDropdown" />
                     <form id="frmWorkoutExcercises" className="formInput" onSubmit={this.handleSubmit}>
 
                         <label>Workout Date</label>
@@ -120,7 +128,7 @@ class WorkoutExcerciseForm extends React.Component {
                         <input type="number" name="Rep_Number" onChange={this.handleInputChange}/>
 
                         <label>Note</label>
-                        <input type="text" name="Workout_Excercise_Note" onChange={this.handleInputChange} />
+                        <input type="text" name="Workout_Excercise_Note" onChange={this.handleInputChange} style={noteStyle} />
 
                         <button>Send data!</button>
                     </form>
