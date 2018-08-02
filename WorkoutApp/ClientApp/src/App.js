@@ -8,21 +8,28 @@ import { propTypes } from 'react';
 
 class SelectOption extends React.Component {
     render() {
+        console.log("SelectOptionKey",this.props.SelectOptionKey);
                 return(
-                    <option key={this.props.excercise_Id} value={this.props.excercise_Id} > {this.props.excercise_Name} </option>
-                    )
+                    <option key={this.props.SelectOptionKey} value={this.props.SelectOptionValue} > {this.props.SelectOptionName} </option>                    
+        )
             }
 }
 
 class SelectDropdown extends React.Component {
     render() {
-        const selectableData = this.props.selectableData;
-        const Options = selectableData.map((excercise) => <option key={excercise.excercise_Id} value={excercise.excercise_Id}> {excercise.excercise_Name} </option>);
+        let Options = [];// ["<Option key='0' value='0'>test</option>"];
 
+        const selectableData = this.props.selectableData;
+
+        Options = selectableData.map((data) => {
+            <SelectOption SelectOptionKey={data.excercise_Id} SelectOptionValue={data.excercise_Id} SelectOptionName={data.excercise_Name} />
+            console.log("data", data.excercise_Name);
+        });
+        console.log("options", Options );
         return (
             <div className="formSelect">
-                <label>Excercise</label>
-                    <select id="Excercises" form={this.props.form} name={this.props.name} onChange={this.props.SelectDropdownOnChange}
+                <label>{this.props.labelName}</label>
+                <select id={this.props.elementId} form={this.props.form} name={this.props.name} onChange={this.props.SelectDropdownOnChange}
                             value={this.props.value} defaultValue={this.props.defaultValue}>
                             {Options}
                 </select>
@@ -43,14 +50,28 @@ class WorkoutExcerciseForm extends React.Component {
             Rep_Number: 0,
             Workout_Excercise_Note: null,
             Workout_Excercise_DateTime: "06/28/2018 1:17PM",
+
             excercises: [],
-            defaultExcerciseId: 0
+            defaultExcerciseId: 0,
+
+            programVersions: [],
+            defaultProgramVersionId: 0
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
+        axios.get("api/ProgramVersion/GetProgramVersions/1000")
+            .then(res => {
+                const programVersions = res.data;
+                this.setState({ programVersions: programVersions });
+                this.setState({ defaultProgramVersionId: programVersions[0].Program_Version_Id });
+                console.log("programVersions", this.state.programVersions);
+                console.log("defaultProgramVersionId", programVersions);
+                console.log("defaultProgramVersionId", programVersions[0].Program_Version_Id);
+            })
+
         axios.get("api/ProgramVersion/GetProgramVersionExcercises/1")
             .then(res => {
                 const excercises = res.data;
@@ -105,9 +126,13 @@ class WorkoutExcerciseForm extends React.Component {
 
         return (
             <div >
-                <label>WORKOUT</label><br/>
-                <SelectDropdown selectableData={this.state.excercises} SelectDropdownOnChange={this.handleInputChange}
-                    Value="0" defaultValue={this.state.defaultExcerciseId} form="frmWorkoutExcercises" name="Excercise_Id" />
+                <label>WORKOUT</label><br />
+                <SelectDropdown labelName="Program" elementId="programVersionsDropdown" selectableData={this.state.programVersions} SelectDropdownOnChange={this.handleInputChange}
+                    value="0" defaultValue={this.state.defaultProgramVersionId} form="frmWorkoutExcercises" name="Program_Version_Id" />
+
+                <SelectDropdown labelName="Excercise" elementId="excercisesDropdown" selectableData={this.state.excercises} SelectDropdownOnChange={this.handleInputChange}
+                    value="0" defaultValue={this.state.defaultExcerciseId} form="frmWorkoutExcercises" name="Excercise_Id" />
+
                     <form id="frmWorkoutExcercises" className="formInput" onSubmit={this.handleSubmit}>
 
                         <label>Workout Date</label>
