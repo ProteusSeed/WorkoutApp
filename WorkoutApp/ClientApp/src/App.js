@@ -8,33 +8,29 @@ import { propTypes } from 'react';
 
 class SelectOption extends React.Component {
     render() {
-        console.log("SelectOptionKey",this.props.SelectOptionKey);
                 return(
-                    <option key={this.props.SelectOptionKey} value={this.props.SelectOptionValue} > {this.props.SelectOptionName} </option>                    
-        )
+                      <option key={this.props.SelectOptionKey} value={this.props.SelectOptionValue} > {this.props.SelectOptionName} </option>     
+                    )
             }
 }
 
 class SelectDropdown extends React.Component {
     render() {
-        let Options = [];// ["<Option key='0' value='0'>test</option>"];
+        let Options = [];
 
         const selectableData = this.props.selectableData;
 
-        Options = selectableData.map((data) => {
-            <SelectOption SelectOptionKey={data.excercise_Id} SelectOptionValue={data.excercise_Id} SelectOptionName={data.excercise_Name} />
-            console.log("data", data.excercise_Name);
-        });
-        console.log("options", Options );
+        Options = selectableData.map((data) => <SelectOption SelectOptionKey={data.itemId} SelectOptionValue={data.itemId} SelectOptionName={data.itemName} />);
+
         return (
-            <div className="formSelect">
-                <label>{this.props.labelName}</label>
-                <select id={this.props.elementId} form={this.props.form} name={this.props.name} onChange={this.props.SelectDropdownOnChange}
-                            value={this.props.value} defaultValue={this.props.defaultValue}>
-                            {Options}
-                </select>
-                </div>
-                        )
+                <div className="formSelect">
+                    <label>{this.props.labelName}</label>
+                    <select id={this.props.elementId} form={this.props.form} name={this.props.name} onChange={this.props.SelectDropdownOnChange}
+                                value={this.props.value} defaultValue={this.props.defaultValue}>
+                        {Options}
+                    </select>
+                    </div>
+                )
     }
 }
 
@@ -64,23 +60,35 @@ class WorkoutExcerciseForm extends React.Component {
     componentDidMount() {
         axios.get("api/ProgramVersion/GetProgramVersions/1000")
             .then(res => {
-                const programVersions = res.data;
+
+                const programVersions = res.data.map((data) => {
+                    /*create a new object with properties that follow what the SelectDropdown's selectableData prop expects
+                      this way the SelectDropdown can be used generically.
+                    */                    
+                    let newDataItem = { itemId: data.program_Version_Id, itemName: data.program_Version_Desc };
+
+                    return newDataItem;
+                })              
+
                 this.setState({ programVersions: programVersions });
-                this.setState({ defaultProgramVersionId: programVersions[0].Program_Version_Id });
-                console.log("programVersions", this.state.programVersions);
-                console.log("defaultProgramVersionId", programVersions);
-                console.log("defaultProgramVersionId", programVersions[0].Program_Version_Id);
+                this.setState({ defaultProgramVersionId: programVersions[0].excercise_Id });
             })
 
         axios.get("api/ProgramVersion/GetProgramVersionExcercises/1")
             .then(res => {
-                const excercises = res.data;
+                const excercises = res.data.map((data) => {
+                    /*create a new object with properties that follow what the SelectDropdown's selectableData prop expects
+                      this way the SelectDropdown can be used generically.
+                    */
+                    let newDataItem = { itemId: data.excercise_Id, itemName: data.excercise_Name };
+                    return newDataItem;
+                })
+
                 this.setState({ excercises: excercises });
                 this.setState({//use the 1st excercise's id as default
                     defaultExcerciseId: this.state.excercises[0].excercise_Id
                 });
-                //this.props.setExcerciseIdCallback(this.name, this.state.defaultExcerciseId);
-                console.log(this.state.excercises);
+
             });
     }
 
@@ -104,16 +112,12 @@ class WorkoutExcerciseForm extends React.Component {
 
         axios.post('/api/Workout/CreateWorkoutExcercise', data )
         .then(function (response) {
-            //handle success
-           //console.log(response);
-            //console.log(response.data);
-            //console.log("data",data);
+
         })
             .catch(function (response) {
                 //handle error
                 console.log("response",response);
-                //console.log("Response data",response.data);
-                //console.log("data", data);
+
             });
               
     }
@@ -136,7 +140,7 @@ class WorkoutExcerciseForm extends React.Component {
                     <form id="frmWorkoutExcercises" className="formInput" onSubmit={this.handleSubmit}>
 
                         <label>Workout Date</label>
-                    <input type="datetime-local" id="Workout_DateTime" name="Workout_DateTime" onChange={this.handleInputChange}/>
+                        <input type="datetime-local" id="Workout_DateTime" name="Workout_DateTime" onChange={this.handleInputChange}/>
 
                         <label>Set Number</label>
                         <input type="number" name="Set_Number" onChange={this.handleInputChange}/>
