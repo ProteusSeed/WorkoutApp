@@ -39,7 +39,7 @@ class WorkoutExcerciseForm extends React.Component {
         super();
         this.state = {
             Workout_DateTime: "03/24/1975",
-            Program_Version_Id: 1,
+            Program_Version_Id: 0,
             Excercise_Id: 0,
             Weight: 0,
             Set_Number: 0,
@@ -71,7 +71,10 @@ class WorkoutExcerciseForm extends React.Component {
                 })              
 
                 this.setState({ programVersions: programVersions });
-                this.setState({ defaultProgramVersionId: programVersions[0].excercise_Id });
+                this.setState({
+                    Program_Version_Id: programVersions[0].itemId,
+                    defaultProgramVersionId: programVersions[0].itemId
+                });
             })
 
         axios.get("api/ProgramVersion/GetProgramVersionExcercises/1")
@@ -83,13 +86,17 @@ class WorkoutExcerciseForm extends React.Component {
                     let newDataItem = { itemId: data.excercise_Id, itemName: data.excercise_Name };
                     return newDataItem;
                 })
-
+                console.log("Excercise_Id", excercises[0].itemId);
                 this.setState({ excercises: excercises });
                 this.setState({//use the 1st excercise's id as default
-                    defaultExcerciseId: this.state.excercises[0].excercise_Id
-                });
+                    Excercise_Id: excercises[0].itemId,
+                    defaultExcerciseId: excercises[0].itemId
 
+                });
+                
             });
+        
+        console.log("state", this.state);
     }
 
     handleInputChange(event) {
@@ -97,9 +104,13 @@ class WorkoutExcerciseForm extends React.Component {
         const value = target.value;
         const name = target.name;
 
+        console.log("name/value", name, value);
+
         this.setState({
             [name]: value,
         });
+
+        console.log("state", this.state);
 
     }
 
@@ -116,7 +127,7 @@ class WorkoutExcerciseForm extends React.Component {
         })
             .catch(function (response) {
                 //handle error
-                console.log("response",response);
+                console.log("response",response,data);
 
             });
               
@@ -132,10 +143,10 @@ class WorkoutExcerciseForm extends React.Component {
             <div >
                 <label>WORKOUT</label><br />
                 <SelectDropdown labelName="Program" elementId="programVersionsDropdown" selectableData={this.state.programVersions} SelectDropdownOnChange={this.handleInputChange}
-                    value="0" defaultValue={this.state.defaultProgramVersionId} form="frmWorkoutExcercises" name="Program_Version_Id" />
+                    value={this.state.Excercise_Id} defaultValue={this.state.defaultProgramVersionId} form="frmWorkoutExcercises" name="Program_Version_Id" />
 
                 <SelectDropdown labelName="Excercise" elementId="excercisesDropdown" selectableData={this.state.excercises} SelectDropdownOnChange={this.handleInputChange}
-                    value="0" defaultValue={this.state.defaultExcerciseId} form="frmWorkoutExcercises" name="Excercise_Id" />
+                    value={this.state.Program_Version_Id} defaultValue={this.state.defaultExcerciseId} form="frmWorkoutExcercises" name="Excercise_Id" />
 
                     <form id="frmWorkoutExcercises" className="formInput" onSubmit={this.handleSubmit}>
 
