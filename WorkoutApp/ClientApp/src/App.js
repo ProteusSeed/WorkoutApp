@@ -58,7 +58,11 @@ class WorkoutExcerciseForm extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("api/ProgramVersion/GetProgramVersions/1000")
+
+        const ProgramId = 1000;
+        var firstProgramVersionId = 0;
+
+        axios.get(`api/ProgramVersion/GetProgramVersions/${ProgramId}`)
             .then(res => {
 
                 const programVersions = res.data.map((data) => {
@@ -70,31 +74,35 @@ class WorkoutExcerciseForm extends React.Component {
                     return newDataItem;
                 })              
 
+                firstProgramVersionId = programVersions[0].itemId;                
+
                 this.setState({ programVersions: programVersions });
                 this.setState({
-                    Program_Version_Id: programVersions[0].itemId,
-                    defaultProgramVersionId: programVersions[0].itemId
+                    Program_Version_Id: firstProgramVersionId,
+                    defaultProgramVersionId: firstProgramVersionId
                 });
-            })
 
-        axios.get("api/ProgramVersion/GetProgramVersionExcercises/1")
-            .then(res => {
-                const excercises = res.data.map((data) => {
-                    /*create a new object with properties that follow what the SelectDropdown's selectableData prop expects
-                      this way the SelectDropdown can be used generically.
-                    */
-                    let newDataItem = { itemId: data.excercise_Id, itemName: data.excercise_Name };
-                    return newDataItem;
-                })
-                console.log("Excercise_Id", excercises[0].itemId);
-                this.setState({ excercises: excercises });
-                this.setState({//use the 1st excercise's id as default
-                    Excercise_Id: excercises[0].itemId,
-                    defaultExcerciseId: excercises[0].itemId
+                //note template literals use the uptick mark ` instead of " or '
+                axios.get(`api/ProgramVersion/GetProgramVersionExcercises/${firstProgramVersionId}`)
+                    .then(res => {
+                        const excercises = res.data.map((data) => {
+                            /*create a new object with properties that follow what the SelectDropdown's selectableData prop expects
+                              this way the SelectDropdown can be used generically.
+                            */
+                            let newDataItem = { itemId: data.excercise_Id, itemName: data.excercise_Name };
+                            return newDataItem;
+                        })
+                        //console.log("Excercise_Id", excercises[0].itemId);
+                        this.setState({ excercises: excercises });
+                        this.setState({//use the 1st excercise's id as default
+                            Excercise_Id: excercises[0].itemId,
+                            defaultExcerciseId: excercises[0].itemId
 
-                });
-                
-            });
+                        });
+
+                    });
+
+            })       
         
         console.log("state", this.state);
     }
@@ -139,8 +147,8 @@ class WorkoutExcerciseForm extends React.Component {
 
         return (
             <div >
-                <label>WORKOUT</label><br />
-                <SelectDropdown labelName="Program" elementId="programVersionsDropdown" selectableData={this.state.programVersions} SelectDropdownOnChange={this.handleInputChange}
+                <label>WORKOUT</label><br/>
+                <SelectDropdown labelName="Program Version" elementId="programVersionsDropdown" selectableData={this.state.programVersions} SelectDropdownOnChange={this.handleInputChange}
                     value={this.state.Program_Version_Id} defaultValue={this.state.defaultProgramVersionId} form="frmWorkoutExcercises" name="Program_Version_Id" />
 
                 <SelectDropdown labelName="Excercise" elementId="excercisesDropdown" selectableData={this.state.excercises} SelectDropdownOnChange={this.handleInputChange}

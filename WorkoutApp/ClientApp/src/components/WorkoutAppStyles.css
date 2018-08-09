@@ -1,7 +1,7 @@
 ﻿
 .formInput{
     display: grid;
-    grid-template-columns: 100px 50px 100px;
+    grid-template-columns: 125px 50px 150px;
     grid-template-rows: auto;
     grid-row-gap: 200px;
     grid-gap: 10px;
@@ -32,7 +32,7 @@
 
 .formSelect {
     display: grid;
-    grid-template-columns: 100px 50px 100px;
+    grid-template-columns: 125px 50px 150px;
     grid-template-rows: auto;
     grid-row-gap: 200px;
     grid-gap: 10px;
