@@ -107,11 +107,9 @@ class WorkoutExcerciseForm extends React.Component {
         console.log("name/value", name, value);
 
         this.setState({
-            [name]: value,
-        });
-
-        console.log("state", this.state);
-
+            [name]: value
+        },
+        () => { console.log("updated state", this.state) });        
     }
 
     handleSubmit(event) {
@@ -143,10 +141,10 @@ class WorkoutExcerciseForm extends React.Component {
             <div >
                 <label>WORKOUT</label><br />
                 <SelectDropdown labelName="Program" elementId="programVersionsDropdown" selectableData={this.state.programVersions} SelectDropdownOnChange={this.handleInputChange}
-                    value={this.state.Excercise_Id} defaultValue={this.state.defaultProgramVersionId} form="frmWorkoutExcercises" name="Program_Version_Id" />
+                    value={this.state.Program_Version_Id} defaultValue={this.state.defaultProgramVersionId} form="frmWorkoutExcercises" name="Program_Version_Id" />
 
                 <SelectDropdown labelName="Excercise" elementId="excercisesDropdown" selectableData={this.state.excercises} SelectDropdownOnChange={this.handleInputChange}
-                    value={this.state.Program_Version_Id} defaultValue={this.state.defaultExcerciseId} form="frmWorkoutExcercises" name="Excercise_Id" />
+                    value={this.state.Excercise_Id} defaultValue={this.state.defaultExcerciseId} form="frmWorkoutExcercises" name="Excercise_Id" />
 
                     <form id="frmWorkoutExcercises" className="formInput" onSubmit={this.handleSubmit}>
 
