@@ -140,13 +140,14 @@ class WorkoutExcerciseForm extends React.Component {
     }
 
     render() {
+        const divStyle = { backgroundColor: "black" };
         const noteStyle = {
             gridColumnStart: 2,
             gridColumnEnd: 4
         };
 
         return (
-            <div >
+            <div style={divStyle}>
                 <label>WORKOUT</label><br/>
                 <SelectDropdown labelName="Program Version" elementId="programVersionsDropdown" selectableData={this.state.programVersions} SelectDropdownOnChange={this.handleInputChange}
                     value={this.state.Program_Version_Id} defaultValue={this.state.defaultProgramVersionId} form="frmWorkoutExcercises" name="Program_Version_Id" />

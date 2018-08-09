@@ -1,5 +1,4 @@
-﻿
-.formInput{
+﻿.formInput{
     display: grid;
     grid-template-columns: 125px 50px 150px;
     grid-template-rows: auto;
@@ -10,6 +9,7 @@
     .formInput label {
         text-align: right;
         grid-column: 1;
+        color: white;
     }
 
         .formInput label:after {
@@ -41,10 +41,11 @@
 .formSelect label:after {
     content: ":";
 }
-.formSelect label {
-    text-align: right;
-    grid-column: 1;
-}
+    .formSelect label {
+        text-align: right;
+        grid-column: 1;
+        color: white;
+    }
 .formSelect select{
     grid-column: 2/4;
 }
