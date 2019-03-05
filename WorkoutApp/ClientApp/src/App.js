@@ -19,7 +19,7 @@ class SelectDropdown extends React.Component {
         let Options = [];
 
         const selectableData = this.props.selectableData;
-
+        console.log(selectableData);
         Options = selectableData.map((data) => <SelectOption SelectOptionKey={data.itemId} SelectOptionValue={data.itemId} SelectOptionName={data.itemName} />);
 
         return (
@@ -62,14 +62,16 @@ class WorkoutExcerciseForm extends React.Component {
 
     GetPrograms() {
 
-        const programs = { Program_Id: 1, Program_Name: "Test", Program_Desc: "Test" };
-        const newPrograms = programs.map((data) => {
+        //Note, programs MUST be an array of objects [{},{}] or you'll get a "programs.map is not a function" error because map is a method of an ARRAY only.
+        const programs = [{ Program_Id: 1, Program_Name: "Test", Program_Desc: "Test" }];
 
-            return( { itemId: data.excercise_Id, itemName: data.excercise_Name })
-        })
+        const newPrograms = programs.map(
+            (data) => {
+                return ({ itemId: data.Program_Id, itemName: data.Program_Name })
+            }
+        );
 
-
-        return (newPrograms )
+        return ( newPrograms )
     }
 
     componentDidMount() {
