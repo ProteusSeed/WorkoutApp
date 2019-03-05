@@ -47,20 +47,39 @@ class WorkoutExcerciseForm extends React.Component {
             Workout_Excercise_Note: null,
             Workout_Excercise_DateTime: "06/28/2018 1:17PM",
 
-            excercises: [],
-            defaultExcerciseId: 0,
+            programs: [],
 
             programVersions: [],
-            defaultProgramVersionId: 0
+            defaultProgramVersionId: 0,
+
+            excercises: [],
+            defaultExcerciseId: 0,
+            
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    GetPrograms() {
+
+        const programs = { Program_Id: 1, Program_Name: "Test", Program_Desc: "Test" };
+        const newPrograms = programs.map((data) => {
+
+            return( { itemId: data.excercise_Id, itemName: data.excercise_Name })
+        })
+
+
+        return (newPrograms )
     }
 
     componentDidMount() {
 
         const ProgramId = 1000;
         var firstProgramVersionId = 0;
+
+        var programs = this.GetPrograms();
+
+        this.setState({ programs: programs });
 
         axios.get(`api/ProgramVersion/GetProgramVersions/${ProgramId}`)
             .then(res => {
@@ -148,7 +167,10 @@ class WorkoutExcerciseForm extends React.Component {
 
         return (
             <div style={divStyle}>
-                <label>WORKOUT</label><br/>
+                <label>WORKOUT</label><br />
+                <SelectDropdown labelName="Program" elementId="programsDropdown" selectableData={this.state.programs} SelectDropdownOnChange={this.handleInputChange}
+                    value={this.state.Program_Id} defaultValue={this.state.Program_Id} form="frmWorkoutExcercises" name="Program_Id" />
+
                 <SelectDropdown labelName="Program Version" elementId="programVersionsDropdown" selectableData={this.state.programVersions} SelectDropdownOnChange={this.handleInputChange}
                     value={this.state.Program_Version_Id} defaultValue={this.state.defaultProgramVersionId} form="frmWorkoutExcercises" name="Program_Version_Id" />
 
