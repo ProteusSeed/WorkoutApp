@@ -9,7 +9,8 @@ import { propTypes } from 'react';
 class SelectOption extends React.Component {
     render() {
                 return(
-                      <option key={this.props.SelectOptionKey} value={this.props.SelectOptionValue} > {this.props.SelectOptionName} </option>     
+
+                    <option key={this.props.SelectOptionKey} value={this.props.SelectOptionValue} > {this.props.SelectOptionName} </option>     
                     )
             }
 }
@@ -134,11 +135,13 @@ class WorkoutExcerciseForm extends React.Component {
         const name = target.name;
 
         console.log("name/value", name, value);
+        //console.log("state", this.state);
 
+        //[name] accesses state variables dynamically, so whatever the target.name (passed from the SelectDropdown's name prop)
+        //will be the state variable the value is assigned to.s
         this.setState({
             [name]: value
-        },
-        () => { console.log("updated state", this.state) });        
+        },() => { console.log("updated state", this.state) });        
     }
 
     handleSubmit(event) {
